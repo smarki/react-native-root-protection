@@ -11,12 +11,20 @@ npm install react-native-root-protection
 ## Usage
 
 ```js
-import { multiply } from "react-native-root-protection";
+import { isRooted, isEmulator } from 'react-native-root-protection';
 
 // ...
 
-const result = await multiply(3, 7);
+const isCompromised = isRooted() || isEmulator();
 ```
+
+## Tested with
+
+- Android Studio emulators
+- Genymotion
+- BlueMotion
+- MeMU
+- LD Player
 
 ## Contributing
 
