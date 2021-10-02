@@ -3,22 +3,26 @@ package com.reactnativerootprotection
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
+import com.reactnativerootprotection.emulator.EmulatorValidator
+import com.scottyab.rootbeer.RootBeer
+import java.lang.Exception
 
-class RootProtectionModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class RootProtectionModule(reactContext: ReactApplicationContext) :
+  ReactContextBaseJavaModule(reactContext) {
+  private val rootBeer = RootBeer(reactContext)
+  private val emulatorValidator = EmulatorValidator(reactContext)
 
-    override fun getName(): String {
-        return "RootProtection"
-    }
+  override fun getName(): String {
+    return "RootProtection"
+  }
 
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
-    @ReactMethod
-    fun multiply(a: Int, b: Int, promise: Promise) {
-    
-      promise.resolve(a * b)
-    
-    }
+  @ReactMethod(isBlockingSynchronousMethod = true)
+  fun isRooted(): Boolean {
+    return rootBeer.isRooted
+  }
 
-    
+  @ReactMethod(isBlockingSynchronousMethod = true)
+  fun isEmulator(): Boolean {
+    return emulatorValidator.isEmulator
+  }
 }

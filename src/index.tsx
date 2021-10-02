@@ -17,6 +17,10 @@ const RootProtection = NativeModules.RootProtection
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return RootProtection.multiply(a, b);
+export function isRooted(): boolean {
+  return RootProtection.isRooted();
+}
+
+export function isEmulator(): boolean {
+  return RootProtection.isEmulator();
 }
