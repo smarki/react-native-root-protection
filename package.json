@@ -1,6 +1,6 @@
 {
   "name": "react-native-root-protection",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Add root and emulator protection to your React Native app",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
