@@ -1,18 +1,24 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-root-protection';
+import { isEmulator, isRooted } from 'react-native-root-protection';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<
+    { isRooted: boolean; isEmulator: boolean } | undefined
+  >();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    setResult({
+      isEmulator: isEmulator(),
+      isRooted: isRooted(),
+    });
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Is emulator: {String(result?.isEmulator)}</Text>
+      <Text>Is rooted: {String(result?.isRooted)}</Text>
     </View>
   );
 }
